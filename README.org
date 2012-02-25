@@ -1,8 +1,7 @@
 * ZOOM-TO-POINT
 
-This is not an Emacs ``mode" so much as two convenient function
-definitions and a slightly less convenient variable declaration (e.g.,
-=zoom-to-point=, =unzoom=, and =*default-zoom-level*=).
+This is not an Emacs ``mode" so much as a few convenient function
+definitions and a slightly less convenient variable declaration.
 
 That said, the functions at least do pretty much what they say:
 namely, they zoom towards and away from the point using the specified ``level" of
@@ -23,11 +22,23 @@ Then zoom in on whatever you're aimed at with
 M-x zoom-to-point
 #+END_EXAMPLE
 
-To return to your previous code- or text-viewing experience, use
+To return to your default code- or text-viewing experience, use
 
 #+BEGIN_EXAMPLE
 M-x unzoom
 #+END_EXAMPLE
 
-This interface is clunky and represents a minimal first working
+to return to your standard font size.
+
+Alternatively, the function =zoom-toggle= is defined, which will check
+if you are currently ``zoomed," and then call =zoom-to-point= or =unzoom= as
+appropriate. You can bind it to a single key chord in your =.emacs=
+file for ease of use,
+e.g.,
+
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c z") 'zoom-toggle)
+#+END_SRC
+
+This interface is clunky and represents a minimal early working
 version. Expect changes, or better yet, contribute some!
