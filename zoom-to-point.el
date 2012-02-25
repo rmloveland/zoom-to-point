@@ -18,39 +18,53 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;  This is not an Emacs mode so much as two function definitions and
-;;  a variable declaration.
-;;
-;;  That said, the functions at least do pretty much what they say:
-;;  namely, they zoom to the point using the specified ``level" of
-;;  zoom you require, with the now-enlarged text centered in the
-;;  buffer.
+;;  * ZOOM-TO-POINT
 
-;;  Specify the zoom-level as an integer in a prefix argument thus:
+;; This is not an Emacs ``mode" so much as two convenient function
+;; definitions and a slightly less convenient variable declaration (e.g.,
+;; =zoom-to-point=, =unzoom=, and =*zoom-level*=).
 
-;;  C-u 6 M-x zoom-to-point
+;; That said, the functions at least do pretty much what they say:
+;; namely, they zoom towards and away from the point using the specified ``level" of
+;; zoom you require, with the now-larger or -smaller text centered in the
+;; buffer.
 
-;;  To return to your previous code- or text-viewing experience, use
+;; Specify the zoom-level in the parameter =*default-zoom-level*=. For now, type
 
-;;  C-u 6 M-x unzoom
+;; #+BEGIN_SRC emacs-lisp
+;;   (defvar *default-zoom-level* 3)
+;; #+END_SRC
 
-;;  When zooming is no longer required, M-x unzoom returns to the
-;;  selected text scale, also with point remaining at center.
+;; into the =*scratch*= buffer and evaluate it.
 
-(defvar *zoom-level* 3)
+;; Then zoom in on whatever you're aimed at with
 
-(defun zoom-to-point (zoom-level)
-  (interactive "p")
-  (let ((z (or zoom-level
-	       *zoom-level*)))
-    (save-excursion
-      (text-scale-increase z)
-      (recenter-top-bottom))))
+;; #+BEGIN_EXAMPLE
+;; M-x zoom-to-point
+;; #+END_EXAMPLE
 
-(defun unzoom (zoom-level)
-  (interactive "p")
-  (let ((z (or zoom-level
-	       *zoom-level*)))
-    (save-excursion
-      (text-scale-decrease z)
-      (recenter-top-bottom))))
+;; To return to your previous code- or text-viewing experience, use
+
+;; #+BEGIN_EXAMPLE
+;; M-x unzoom
+;; #+END_EXAMPLE
+
+;; This interface is clunky and represents a minimal first working
+;; version. Expect changes, or better yet, contribute some!
+;; This is not an Emacs mode so much as two function definitions and
+
+(defvar *default-zoom-level* 3)
+
+(defun zoom-to-point ()
+  (interactive)
+  (save-excursion
+    (text-scale-increase *default-zoom-level*)
+    (recenter-top-bottom)))
+
+(defun unzoom ()
+  (interactive)
+  (save-excursion
+    (text-scale-decrease *default-zoom-level*)
+    (recenter-top-bottom)))
+
+(provide 'zoom-to-point)
