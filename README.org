@@ -5,21 +5,29 @@ definitions and a slightly less convenient variable declaration (e.g.,
 =zoom-to-point=, =unzoom=, and =*zoom-level*=).
 
 That said, the functions at least do pretty much what they say:
-namely, they zoom to the point using the specified ``level" of
-zoom you require, with the now-enlarged text centered in the
+namely, they zoom towards and away from the point using the specified ``level" of
+zoom you require, with the now-larger or -smaller text centered in the
 buffer.
 
-Specify the zoom-level as an integer in a prefix argument thus:
+Specify the zoom-level in the parameter =*default-zoom-level*=. For now, type
+
+#+BEGIN_SRC emacs-lisp
+  (defvar *default-zoom-level* 3)
+#+END_SRC
+
+into the =*scratch*= buffer and evaluate it.
+
+Then zoom in on whatever you're aimed at with
 
 #+BEGIN_EXAMPLE
-C-u 6 M-x zoom-to-point
+M-x zoom-to-point
 #+END_EXAMPLE
 
 To return to your previous code- or text-viewing experience, use
 
 #+BEGIN_EXAMPLE
-C-u 6 M-x unzoom
+M-x unzoom
 #+END_EXAMPLE
 
-When zooming is no longer required, =M-x unzoom= returns to the
-selected text scale, also with point remaining at center.
+This interface is clunky and represents a minimal first working
+version. Expect changes, or better yet, contribute some!
