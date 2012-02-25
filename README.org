@@ -2,7 +2,7 @@
 
 This is not an Emacs ``mode" so much as two convenient function
 definitions and a slightly less convenient variable declaration (e.g.,
-=zoom-to-point=, =unzoom=, and =*zoom-level*=).
+=zoom-to-point=, =unzoom=, and =*default-zoom-level*=).
 
 That said, the functions at least do pretty much what they say:
 namely, they zoom towards and away from the point using the specified ``level" of
