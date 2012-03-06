@@ -45,7 +45,6 @@
     (recenter)))
 
 (defun zoomed-p ()
-  (interactive)
   (if (= text-scale-mode-amount 0)
       nil
     t))
