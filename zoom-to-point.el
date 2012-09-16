@@ -31,17 +31,19 @@
       (unzoom)
     (zoom-to-point)))
 
-(defun zoom-to-point ()
+(defun zoom-do (thunk)
   (interactive)
   (save-excursion
-    (text-scale-increase *default-zoom-level*)
+    (funcall thunk)
     (recenter)))
 
+(defun zoom-to-point ()
+  (zoom-do (lambda ()
+	     (text-scale-increase *default-zoom-level*))))
+
 (defun unzoom ()
-  (interactive)
-  (save-excursion
-    (text-scale-set 0)
-    (recenter)))
+  (zoom-do (lambda ()
+    (text-scale-set 0))))
 
 (defun zoomed-p ()
   (if (= text-scale-mode-amount 0)
