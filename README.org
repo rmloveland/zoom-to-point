@@ -8,7 +8,7 @@ namely, they zoom towards and away from the point using the specified ``level" o
 zoom you require, with the now-larger or -smaller text centered in the
 buffer.
 
-Specify the zoom-level in the parameter =*default-zoom-level*=. For now, type
+Specify the zoom-level in the variable =*default-zoom-level*=. For now, type
 
 #+BEGIN_SRC emacs-lisp
   (defvar *default-zoom-level* 3)
