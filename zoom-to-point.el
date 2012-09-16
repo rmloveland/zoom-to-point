@@ -27,10 +27,9 @@
 
 (defun zoom-toggle ()
   (interactive)
-  (save-excursion
-    (if (zoomed-p)
-	(unzoom)
-      (zoom-to-point))))
+  (if (zoomed-p)
+      (unzoom)
+    (zoom-to-point)))
 
 (defun zoom-to-point ()
   (interactive)
